@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUDS</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="cruds-container">
+      <section class="cruds-header">
+        <h2>cruds</h2>
+        <p>create | read | update | delete | search</p>
+        <p>product management system</p>
+      </section>
+
+      <main class="cruds-inputs">
+        <input type="text" placeholder="title" id="title" />
+        <div class="price">
+          <input type="number" id="price" placeholder="price" />
+          <input type="number" id="taxes" placeholder="taxes" />
+          <input type="number" id="ads" placeholder="ads" />
+          <input type="number" id="discount" placeholder="discount" />
+          <span class="total" id="total">123456</span>
+        </div>
+        <input type="number" placeholder="count" id="count" />
+        <input type="text" placeholder="category" id="category" />
+        <button id="submit" class="create">create</button>
+      </main>
+
+      <section class="cruds-outputs">
+        <div class="search-container">
+          <input type="text" id="search" placeholder="search" >
+          <div class="btn-search">
+            <button id="searchTitle">search by title</button>
+            <button id="searchCategory" >search by category</button>
+          </div>
+        </div>
+
+        <table>
+          <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>price</th>
+            <th>taxes</th>
+            <th>ads</th>
+            <th>discount</th>
+            <th>total</th>
+            <th>category</th>
+            <th>update</th>
+            <th>delete</th>
+          </tr>
+
+          <tr>
+            <td>1</td>
+            <td>phone</td>
+            <td>69</td>
+            <td>2</td>
+            <td>96</td>
+            <td>20</td>
+            <td>569</td>
+            <td>phone</td>
+            <td>
+              <button class="update" id="update">update</button>
+            </td>
+           <td>
+                          <button class="delete" id="delete">delete</button>
+
+           </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>phone</td>
+            <td>69</td>
+            <td>2</td>
+            <td>96</td>
+            <td>20</td>
+            <td>569</td>
+            <td>phone</td>
+            <td>
+              <button class="update" id="update">update</button>
+            </td>
+           <td>
+                          <button class="delete" id="delete">delete</button>
+
+           </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>phone</td>
+            <td>69</td>
+            <td>2</td>
+            <td>96</td>
+            <td>20</td>
+            <td>569</td>
+            <td>phone</td>
+            <td>
+              <button class="update" id="update">update</button>
+            </td>
+           <td>
+                          <button class="delete" id="delete">delete</button>
+
+           </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>phone</td>
+            <td>69</td>
+            <td>2</td>
+            <td>96</td>
+            <td>20</td>
+            <td>569</td>
+            <td>phone</td>
+            <td>
+              <button class="update" id="update">update</button>
+            </td>
+           <td>
+                          <button class="delete" id="delete">delete</button>
+
+           </td>
+          </tr>
+        </table>
+
+      </section>
+
+    </div>
+  </body>
+</html>
