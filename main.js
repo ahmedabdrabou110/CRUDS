@@ -30,6 +30,17 @@ priceInputs.forEach(item => {
         getTotalPrice();
     });
 });
+//! function of clear inputs after create new product 
+const clearInputs = () => {
+    title.value = "";
+    price.value = "";
+    taxes.value = "";
+    ads.value = "";
+    discount.value = "";
+    total.innerHTML = "";
+    count.value = "";
+    category.value = "";
+};
 //! create product and push to product array and save to localstorage 
 create.addEventListener("click", () => {
     const newProduct = {
@@ -44,4 +55,5 @@ create.addEventListener("click", () => {
     };
     products.push(newProduct);
     localStorage.setItem("product", JSON.stringify(products));
+    clearInputs();
 });
