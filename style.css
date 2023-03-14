@@ -142,10 +142,17 @@ body {
 .cruds-container .cruds-outputs table tbody tr button {
   border: 0;
   outline: 0;
-  padding: 8px 5px;
+  padding: 5px;
   color: #fff;
   border-radius: 6px;
   cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.cruds-container .cruds-outputs table tbody tr button:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  letter-spacing: 0.5px;
 }
 .cruds-container .cruds-outputs table tbody tr button.update {
   background-color: rgb(13, 96, 13);

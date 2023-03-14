@@ -1,0 +1,11 @@
+This is a road map of function in my project :- 
+  - get Total
+  - create a product 
+  - save localstorage 
+  - clear inputs 
+  - read data 
+  - count 
+  - delete 
+  - update
+  - search
+  - clean data 
