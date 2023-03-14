@@ -10,6 +10,22 @@ const category = document.getElementById('category') as HTMLInputElement;
 const create = document.getElementById("submit") as HTMLButtonElement;
 const priceInputs = document.querySelectorAll(".price input")
 
+//! get products is blank if no localstorage or get data from localstorage
+let products = JSON.parse(localStorage.getItem("product")!) || [] ;
+
+
+//! interface of create new object of product 
+interface productInterface {
+    title:string;
+    price:number;
+    taxes:number;
+    ads:number;
+    discount:number;
+    total:string;
+    count:number;
+    category:string;
+}
+
 //! Get Total price
 const getTotalPrice = () => {
     if(price.value !== "") {
@@ -22,9 +38,27 @@ const getTotalPrice = () => {
     }
 }
 
-//! Calling a function 
+//! Calling a function [get total]
 priceInputs.forEach(item => {
     item.addEventListener("keyup" , () =>{
         getTotalPrice();
     })
+})
+
+
+
+//! create product and push to product array and save to localstorage 
+create.addEventListener("click" , () =>{
+    const newProduct : productInterface  = {
+        title:title.value ,
+        price:+price.value ,
+        taxes:+taxes.value,
+        ads:+ads.value,
+        discount:+discount.value,
+        total:total.value,
+        count:+count.value,
+        category:category.value
+    }
+    products.push(newProduct);
+    localStorage.setItem("product", JSON.stringify(products));
 })
