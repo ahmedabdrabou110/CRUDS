@@ -8,10 +8,11 @@ const total = document.getElementById('total') as HTMLInputElement;
 const count = document.getElementById('count') as HTMLInputElement;
 const category = document.getElementById('category') as HTMLInputElement;
 const create = document.getElementById("submit") as HTMLButtonElement;
-const priceInputs = document.querySelectorAll(".price input")
+const priceInputs = document.querySelectorAll(".price input");
+const tbody = document.querySelector("#tableBody") as HTMLElement;
 
 //! get products is blank if no localstorage or get data from localstorage
-let products = JSON.parse(localStorage.getItem("product")!) || [] ;
+let products = JSON.parse(localStorage.getItem('product')!) || [] ;
 
 
 //! interface of create new object of product 
@@ -36,7 +37,7 @@ const getTotalPrice = () => {
         total.innerHTML = "";
         total.style.background = "#a00d02";
     }
-}
+}   
 
 //! Calling a function [get total]
 priceInputs.forEach(item => {
@@ -52,14 +53,60 @@ const clearInputs= () => {
     taxes.value = "" ;
     ads.value = "" ;
     discount.value = "" ;
-    total.innerHTML="";
+    total.textContent="";
     count.value="";
     category.value="";
 }
 
+//! function of read data [second operation of CRUDS] 
+
+const readData = () => {
+    let table = "";
+
+//   for (let index = 0 ; index <  products.length ; index++) {
+//     table += `<tr>
+//             <td>${index + 1}</td>
+//             <td>${products[index].title}</td>
+//             <td>${products[index].price}</td>
+//             <td>${products[index].taxes}</td>
+//             <td>${products[index].ads}</td>
+//             <td>${products[index].discount}</td>
+//             <td>${products[index].total}</td>
+//             <td>${products[index].category}</td>
+//             <td>
+//               <button class="update" id="update">update</button>
+//             </td>
+//            <td>
+//               <button class="delete" id="delete">delete</button>
+//            </td>
+//           </tr>`;
+//   }
+
+    products.find((item , id) => {
+         table += `<tr>
+            <td>${id + 1}</td>
+            <td>${item.title}</td>
+            <td>${item.price}</td>
+            <td>${item.taxes}</td>
+            <td>${item.ads}</td>
+            <td>${item.discount}</td>
+            <td>${item.total}</td>
+            <td>${item.category}</td>
+            <td>
+              <button class="update" id="update">update</button>
+            </td>
+           <td>
+              <button class="delete" id="delete">delete</button>
+           </td>
+          </tr>`;
+    })
+
+  tbody.innerHTML = table ;
+  
+}
 
 
-//! create product and push to product array and save to localstorage 
+//! create product and push to product array and save to localstorage [first operation of CRUDS]
 create.addEventListener("click" , () =>{
     const newProduct : productInterface  = {
         title:title.value ,
@@ -67,13 +114,16 @@ create.addEventListener("click" , () =>{
         taxes:+taxes.value,
         ads:+ads.value,
         discount:+discount.value,
-        total:total.value,
+        total:total.innerHTML,
         count:+count.value,
-        category:category.value
+        category:category.value,
     }
     products.push(newProduct);
+    readData()
     localStorage.setItem("product", JSON.stringify(products));
     clearInputs();
 })
+
+
 
 
