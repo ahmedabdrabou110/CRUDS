@@ -130,6 +130,27 @@ body {
 .cruds-container .cruds-outputs .search-container .btn-search button {
   width: 45%;
 }
+.cruds-container .cruds-outputs div.delete-all {
+  width: 100%;
+}
+.cruds-container .cruds-outputs div.delete-all button {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  font-size: 22px;
+  margin: 5px 0;
+  background-color: #607d8b;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.cruds-container .cruds-outputs div.delete-all button:hover {
+  background-color: #265c77;
+  letter-spacing: 2px;
+}
 .cruds-container .cruds-outputs table {
   width: 100%;
   text-align: center;
@@ -138,6 +159,9 @@ body {
 }
 .cruds-container .cruds-outputs table th {
   text-transform: uppercase;
+}
+.cruds-container .cruds-outputs table tbody {
+  padding-top: 20px;
 }
 .cruds-container .cruds-outputs table tbody tr button {
   border: 0;

@@ -64,8 +64,16 @@ const readData = () => {
           </tr>`;
     });
     tbody.innerHTML = table;
+    const deleteAll = document.querySelector(".delete-all");
+    if (products.length) {
+        deleteAll.innerHTML = `
+        <button onclick="deleteAll()" >Delete All ( ${products.length} )</button>
+    `;
+    }
+    else {
+        deleteAll.innerHTML = "";
+    }
 };
-readData();
 //! create product and push to product array and save to localstorage [first operation of CRUDS]
 create.addEventListener("click", () => {
     const newProduct = {
@@ -78,7 +86,14 @@ create.addEventListener("click", () => {
         count: +count.value,
         category: category.value,
     };
-    products.push(newProduct);
+    if (newProduct.count > 1) {
+        for (let i = 0; i < newProduct.count; i++) {
+            products.push(newProduct);
+        }
+    }
+    else {
+        products.push(newProduct);
+    }
     readData();
     localStorage.setItem("product", JSON.stringify(products));
     clearInputs();
@@ -87,5 +102,11 @@ create.addEventListener("click", () => {
 function deleteProduct(id) {
     products.splice(id - 1, 1);
     localStorage.setItem("product", JSON.stringify(products));
+    readData();
+}
+//! delete all data from product from array and localstorage
+function deleteAll() {
+    localStorage.clear();
+    products.splice(0);
     readData();
 }

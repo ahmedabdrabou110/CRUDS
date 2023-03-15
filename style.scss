@@ -107,8 +107,15 @@ body {
                 }
             }
         }
+        div.delete-all {
+                width: 100%;
+                @include buttonStyle();
+            }
 
         table {
+
+            
+
             width: 100%;
             text-align: center;
             margin: 5px 0;
