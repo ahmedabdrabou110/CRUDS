@@ -11,6 +11,12 @@ const create = document.getElementById("submit") as HTMLButtonElement;
 const priceInputs = document.querySelectorAll(".price input");
 const tbody = document.querySelector("#tableBody") as HTMLElement;
 
+//! Mood is a variable to check if create button work as create or update
+let mood: string = "create";
+
+//! This is a variable to store index inside it
+let temp :number ;
+
 //! get products is blank if no localstorage or get data from localstorage
 let products = JSON.parse(localStorage.getItem('product')!) || [] ;
 
@@ -74,7 +80,7 @@ const readData = () => {
             <td>${item.total}</td>
             <td>${item.category}</td>
             <td>
-              <button class="update" id="update">update</button>
+              <button class="update" onclick="updateProduct(${id})" id="update">update</button>
             </td>
            <td>
               <button class="delete"  onclick="deleteProduct(${id+1})"  id="delete">delete</button>
@@ -94,11 +100,17 @@ const deleteAll = document.querySelector(".delete-all") as HTMLElement ;
 }
 
 
+function createMood () {
+    mood = "create";
+        create.innerHTML = "create";
+        count.style.display = "block" ;
+}
 
 
 //! create product and push to product array and save to localstorage [first operation of CRUDS]
 create.addEventListener("click" , () =>{
-    const newProduct : productInterface  = {
+    
+    let newProduct : productInterface  = {
         title:title.value ,
         price:+price.value ,
         taxes:+taxes.value,
@@ -108,18 +120,24 @@ create.addEventListener("click" , () =>{
         count:+count.value,
         category:category.value,
     }
-    if(newProduct.count > 1) {
-        for(let i = 0 ; i < newProduct.count ;i++) {
+    if(mood === "create") {
+        if(newProduct.count > 1) {
+            for(let i = 0 ; i < newProduct.count ;i++) {
+                products.push(newProduct);
+            }
+        }else{
             products.push(newProduct);
         }
-    }else{
-        products.push(newProduct);
+        
+        
+    }else {
+        products[temp] =  newProduct;
+        createMood();
     }
-    readData()
+    readData();
     localStorage.setItem("product", JSON.stringify(products));
     clearInputs();
-
-    
+    getTotalPrice()
 })
 
 
@@ -138,5 +156,27 @@ function deleteAll(){
     localStorage.clear();
     products.splice(0);
     readData();
+    createMood();
 }
 
+readData();
+
+//! update a  product from product array and save to localstorage [forth operation of CRUDS]
+
+function updateProduct (id:number) {
+    title.value = products[id].title ;
+    price.value = products[id].price ;
+    taxes.value = products[id].taxes ;
+    ads.value = products[id].ads ;
+    discount.value = products[id].discount ; 
+    getTotalPrice();
+    category.value = products[id].category ;
+    count.style.display = "none";
+    create.innerHTML = "update";
+    mood = "update";
+    temp = id; 
+    scroll({
+        top:0 ,
+        behavior:"smooth"
+    })
+}
