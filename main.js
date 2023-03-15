@@ -45,24 +45,6 @@ const clearInputs = () => {
 //! function of read data [second operation of CRUDS] 
 const readData = () => {
     let table = "";
-    //   for (let index = 0 ; index <  products.length ; index++) {
-    //     table += `<tr>
-    //             <td>${index + 1}</td>
-    //             <td>${products[index].title}</td>
-    //             <td>${products[index].price}</td>
-    //             <td>${products[index].taxes}</td>
-    //             <td>${products[index].ads}</td>
-    //             <td>${products[index].discount}</td>
-    //             <td>${products[index].total}</td>
-    //             <td>${products[index].category}</td>
-    //             <td>
-    //               <button class="update" id="update">update</button>
-    //             </td>
-    //            <td>
-    //               <button class="delete" id="delete">delete</button>
-    //            </td>
-    //           </tr>`;
-    //   }
     products.find((item, id) => {
         table += `<tr>
             <td>${id + 1}</td>
@@ -77,12 +59,13 @@ const readData = () => {
               <button class="update" id="update">update</button>
             </td>
            <td>
-              <button class="delete" id="delete">delete</button>
+              <button class="delete"  onclick="deleteProduct(${id + 1})"  id="delete">delete</button>
            </td>
           </tr>`;
     });
     tbody.innerHTML = table;
 };
+readData();
 //! create product and push to product array and save to localstorage [first operation of CRUDS]
 create.addEventListener("click", () => {
     const newProduct = {
@@ -100,3 +83,9 @@ create.addEventListener("click", () => {
     localStorage.setItem("product", JSON.stringify(products));
     clearInputs();
 });
+//! delete a  product from product array and save to localstorage [third operation of CRUDS]
+function deleteProduct(id) {
+    products.splice(id - 1, 1);
+    localStorage.setItem("product", JSON.stringify(products));
+    readData();
+}
