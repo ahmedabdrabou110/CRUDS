@@ -8,11 +8,14 @@ const discount = document.getElementById('discount');
 const total = document.getElementById('total');
 const count = document.getElementById('count');
 const category = document.getElementById('category');
+const search = document.getElementById('search');
 const create = document.getElementById("submit");
 const priceInputs = document.querySelectorAll(".price input");
 const tbody = document.querySelector("#tableBody");
 //! Mood is a variable to check if create button work as create or update
 let mood = "create";
+//! Mood is a variable to check if search button is by title or by category
+let searchMood = "title";
 //! This is a variable to store index inside it
 let temp;
 //! get products is blank if no localstorage or get data from localstorage
@@ -146,3 +149,68 @@ function updateProduct(id) {
         behavior: "smooth"
     });
 }
+//! search  a  product with title or categoru  from product array  [fifth operation of CRUDS]
+//* get mood which search by title or by category 
+function getSearchMood(id) {
+    if (id === "searchTitle") {
+        searchMood = "title";
+        search.placeholder = "search by title";
+    }
+    else {
+        searchMood = "category";
+        search.placeholder = "search by category";
+    }
+    search.focus();
+}
+function searchData(value) {
+    let table = "";
+    if (searchMood === "title") {
+        for (let index = 0; index < products.length; index++) {
+            if (products[index].title.includes(value)) {
+                table += `<tr>
+                    <td>${index + 1}</td>
+                    <td>${products[index].title}</td>
+                    <td>${products[index].price}</td>
+                    <td>${products[index].taxes}</td>
+                    <td>${products[index].ads}</td>
+                    <td>${products[index].discount}</td>
+                    <td>${products[index].total}</td>
+                    <td>${products[index].category}</td>
+                    <td>
+                    <button class="update" onclick="updateProduct(${index})" id="update">update</button>
+                    </td>
+                <td>
+                    <button class="delete"  onclick="deleteProduct(${index + 1})"  id="delete">delete</button>
+                </td>
+                </tr>`;
+            }
+        }
+    }
+    else {
+        for (let index = 0; index < products.length; index++) {
+            if (products[index].category.includes(value)) {
+                table += `<tr>
+                    <td>${index + 1}</td>
+                    <td>${products[index].title}</td>
+                    <td>${products[index].price}</td>
+                    <td>${products[index].taxes}</td>
+                    <td>${products[index].ads}</td>
+                    <td>${products[index].discount}</td>
+                    <td>${products[index].total}</td>
+                    <td>${products[index].category}</td>
+                    <td>
+                    <button class="update" onclick="updateProduct(${index})" id="update">update</button>
+                    </td>
+                <td>
+                    <button class="delete"  onclick="deleteProduct(${index + 1})"  id="delete">delete</button>
+                </td>
+                </tr>`;
+            }
+        }
+    }
+    tbody.innerHTML = table;
+}
+search.addEventListener("keyup", () => {
+    const searchValue = search.value;
+    searchData(searchValue);
+});
