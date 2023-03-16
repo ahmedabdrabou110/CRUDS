@@ -98,19 +98,21 @@ create.addEventListener("click", () => {
         count: +count.value,
         category: category.value,
     };
-    if (mood === "create") {
-        if (newProduct.count > 1) {
-            for (let i = 0; i < newProduct.count; i++) {
+    if (title.value !== "" && price.value !== "" && category.value !== "") {
+        if (mood === "create") {
+            if (newProduct.count > 1) {
+                for (let i = 0; i < newProduct.count; i++) {
+                    products.push(newProduct);
+                }
+            }
+            else {
                 products.push(newProduct);
             }
         }
         else {
-            products.push(newProduct);
+            products[temp] = newProduct;
+            createMood();
         }
-    }
-    else {
-        products[temp] = newProduct;
-        createMood();
     }
     readData();
     localStorage.setItem("product", JSON.stringify(products));
