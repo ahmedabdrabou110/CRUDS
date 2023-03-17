@@ -151,3 +151,47 @@ body {
         }
     }
 }
+
+
+
+//! Media queries
+
+@media only screen  and (width < 700px) {
+    .cruds-container {
+        width: 100%;
+        margin: 0;
+
+       
+        .btn-search {
+            display: flex;
+            flex-direction: column;
+
+            button {
+                width: 100vw !important;
+            }
+        }
+
+        .table {
+            width: 100vw;
+            margin: 0;
+            overflow-x: scroll;
+        }
+    }
+}
+
+
+@media only screen and (width < 350px) {
+    .price {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            width: 100% !important;
+            margin-bottom: 10px;
+        }
+        .total {
+            margin-right: auto;
+            margin-bottom: 10px;
+        }
+    }
+}
