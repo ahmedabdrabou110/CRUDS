@@ -138,6 +138,8 @@ create.addEventListener("click" , () =>{
         products[temp] =  newProduct;
         createMood();
     }
+    }else {
+        alert("please , Enter required values :- title , price , category");
     }
     readData();
     localStorage.setItem("product", JSON.stringify(products));
