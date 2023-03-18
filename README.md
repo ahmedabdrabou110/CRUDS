@@ -2,4 +2,6 @@
 ### This is a project that dealing with data 
 
 ## This is project is done with typescript and sass 
-[Live demo](cruds-data.netlify.app)
+
+
+# Live Demo :- [https://cruds-app-data.netlify.app/](https://cruds-app-data.netlify.app/)
